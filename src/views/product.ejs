@@ -1,0 +1,60 @@
+<% if(locals.lastvisit){ %>
+    <div class="alert alert-danger" role="alert">
+        Your last visit on : <%=locals.lastvisit%>
+    </div>
+ <% } %>
+
+        <h1 class="mt-5 mb-4">Products</h1>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(product=> { %>
+                    <tr>
+                        <th scope="row">
+                            <%= product.id %>
+                        </th>
+                        <td>
+                            <%= product.name %>
+                        </td>
+                        <td>
+                            <%= product.desc %>
+                        </td>
+                        <td>$<%= product.price %>
+                        </td>
+                        <td>
+                            <img src="<%= product.imageUrl %>" alt="<%= product.name %>" style="max-width: 100px;">
+                        </td>
+
+                        <td>
+                            <!-- update button -->
+                            <button class="btn btn-warning"> <a href="/product-update/<%=product.id %>"
+                                    style="text-decoration: none;  color: white;">
+                                    Update</a>
+                            </button>
+
+                            <!-- <button class="btn btn-danger"> <a href="/delete-product/<%=product.id %>" 
+                        style="text-decoration: none;  color: white;"  value="DELETE" >
+                        Delete</a>
+                     </button> -->
+
+
+
+                            <!-- calling this delete api from js file so we pass  id as a  function -->
+                            <button class="btn btn-danger" onclick="deleteProduct('<%=product.id %>')">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+        </div>
